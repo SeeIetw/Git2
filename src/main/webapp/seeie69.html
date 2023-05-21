@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+	function test1(){
+		$("#id1").load("seeie67.jsp?max="+ $("#max").val());
+	}
+	function test2(){
+		$.get("seeie67.jsp?max="+ $("#max").val(), 
+				function(data, status){
+					if(status=='success'){
+						$('#id1').html(data);
+					}
+				})
+	}
+	function test3(){
+		$.post("seeie68.jsp", {
+			"max" : $('#max').val()
+		}, function(data, status){
+			if (status == 'success'){
+				$("#id1").html(data);
+			}			
+		});
+	}
+
+</script>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>SeeIe Big Comp</title>
+</head>
+<body>
+	<input type="number" id="max" /><br>
+	<button onclick="test1()">Test1</button><br />
+	<button onclick="test2()">Test2</button><br />
+	<button onclick="test3()">Test3</button><br />
+	<hr />
+	<div id="id1"></div>
+	<hr />
+	
+	
+</body>
+</html>

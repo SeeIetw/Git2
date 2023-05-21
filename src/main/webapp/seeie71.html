@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+
+	function test2(){
+		$.get("seeie70.jsp?id="+ $("#id").val(), 
+				function(data, status){
+					if(status=='success'){
+						let jsonobj = JSON.parse(data.trim());
+						$('#name').html(jsonobj.name);
+						$('#city').html(jsonobj.city);
+						$('#town').html(jsonobj.town);
+
+					}
+				})
+	}
+
+</script>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>SeeIe Big Comp</title>
+</head>
+<body>
+	<input type="number" id="id" /><br>
+	<button onclick="test2()">Test2</button><br />
+	<hr />
+	Name: <span id="name"></span><br>
+	City: <span id="city"></span><br>
+	Town: <span id="town"></span><br>
+	
+	
+</body>
+</html>

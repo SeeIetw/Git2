@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>SeeIe Big Comp</title>
+	</head>
+	<script type="text/javascript">
+	var page = 1;
+	function load(p){
+		$.ajax({
+			url : "seeie755.jsp?page="+p,
+			type : "get",
+			success : doSuccess,
+			error : doError
+		});	
+	}
+	function prev(){
+		load(--page);
+	}
+	function next(){
+		load(++page);
+	}
+	
+	
+	
+	
+		var page;
+		function doSuccess(json){
+			var jsonObj = $.parseJSON(json.trim());
+			page = jsonObj.page;
+			if(jsonObj.error !=0) return;
+			$('#table').empty();
+			$(jsonObj.data).each(function(i, row){
+				$('#table').append(
+					`<tr> 
+						<td>${i}</td>
+						<td>${row.name}</td>
+						<td>${row.tel}</td>
+					</tr>
+					`
+				)				
+			});
+			
+			
+		}
+		
+		function doError(){
+			console.log("error");
+		}
+	</script>
+	<body>
+	<input type="button" value="Load" onclick="load(1)">
+	<input type="button" value="Prev" onclick="prev(1)">
+	<input type="button" value="Next" onclick="next(1)">
+	<hr />
+		Page: <span id="page"></span><br />
+		<table id="table" width="100%" border="1"></table>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+create table t1 (
+  id int primary key,
+  data nvarchar(10),
+  [data one] int not null
+)
+insert into t1 (id, data, [data one]) values (1, 'abc', 100);
+insert into t1 (id, data, [data one]) values (2, 'abc', 200);
+insert into t1 (id, data, [data one]) values (3, 'abc', 300);
+insert into t1 (id, data, [data one]) values (4, 'abc', 400);
+insert into t1 (id, data, [data one]) values (5, 'abc', 500);
+select * from t1;
+ 
+select top 3 * from t1;
+ 
+alter table t1 add constraint chk_dataGT_0 check ([data one] >= 0)
+ 
+insert into t1 (id, data, [data one]) values (6, 'abc', -500);
+select * from t1;
+ 
+create table customer (
+customerId int primary key,
+companyName varchar(10)
+);
+ 
+insert into customer values (1, N'資策會');
+select * from customer
+ 
+create table orders (
+orderId int primary key,
+customerId int,
+data varchar(10)
+);
+
+
+
+------------------------------------------------
+
+
+
+
+錢達智
+wolfgang.chien@gmail.com
